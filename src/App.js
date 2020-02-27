@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react'
 import logo from './logo.svg';
 import './App.css';
+import Select from 'react-select';
+import { colourOptions } from './docs/data';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+  state = {
+    selectedColors: null
+  }
+
+  handleState = (selectedColor, x, y) => {
+    console.log(">>>", x, y);
+    
+    this.setState({selectedColors:selectedColor})
+  }
+
+  render() {
+
+    var arrayOfColors = this.state.selectedColors
+
+    return (
+      <div className="App">
+        <Select
+          isMulti
+          name="colors"
+          options={colourOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange = {this.handleState}
+          value={arrayOfColors}
+        />
+      </div>
+    )
+  }
 }
 
-export default App;
