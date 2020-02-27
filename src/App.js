@@ -10,9 +10,7 @@ export default class App extends Component {
     selectedColors: null
   }
 
-  handleState = (selectedColor, x, y) => {
-    console.log(">>>", x, y);
-    
+  handleState = (selectedColor) => {    
     this.setState({selectedColors:selectedColor})
   }
 
